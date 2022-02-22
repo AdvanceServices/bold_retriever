@@ -16,7 +16,7 @@ def generate_output_content(all_ids: List[Dict[str, str]], output_filename: str,
                             seq_record: SeqRecord):
     if all_ids:
         with open(output_filename, "a") as handle:
-            csv_writer = csv.DictWriter(handle, fieldnames=HEADERS)
+            csv_writer = csv.DictWriter(handle, fieldnames=HEADERS, extrasaction='ignore')
             for item in all_ids:
                 try:
                     del item["seq_record"]
@@ -29,7 +29,7 @@ def generate_output_content(all_ids: List[Dict[str, str]], output_filename: str,
             if header not in out:
                 out[header] = "nohit"
         with open(output_filename, "a") as handle:
-            csv_writer = csv.DictWriter(handle, fieldnames=HEADERS)
+            csv_writer = csv.DictWriter(handle, fieldnames=HEADERS, extrasaction='ignore')
             csv_writer.writerow(out)
 
 
